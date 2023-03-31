@@ -2,13 +2,14 @@
 @section('content')
 <table class="table">
     <thead>
+    <tbody>
         <tr>
             <th scope="col">#</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">Handle</th>
         </tr>
-    </thead>
+        </thead>
     <tbody>
         <tr>
             <th scope="row">1</th>

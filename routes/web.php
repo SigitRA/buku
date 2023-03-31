@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController; //mendaftarkan controler yang akan digunakan
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PositionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,9 @@ Route::middleware('auth')->group(
         Route::get('password', [UserController::class, 'password'])->name('password');
         Route::post('password', [UserController::class, 'password_action'])->name('password.action');
         Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
+
+        // Route Position
+        Route::resource('positions', PositionController::class);
     }
 );

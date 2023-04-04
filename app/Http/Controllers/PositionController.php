@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Positions;
+use Illuminate\Http\Request;
 
 class PositionController extends Controller
 {
-    //
     public function index()
     {
-        $title = "Position";
+        $title = "Data Positions";
         $positions = Positions::orderBy('id', 'asc')->paginate(5);
         return view('positions.index', compact(['positions', 'title']));
     }
 
     public function create()
     {
-        $title = "Position";
-        return view('positions.create', compact('title'));
+        $title = "Tambah data position";
+        return view('positions.create', compact(['title']));
     }
 
 
@@ -27,7 +26,7 @@ class PositionController extends Controller
         $request->validate([
             'name' => 'required',
             'keterangan',
-            'alias'
+            'alias',
         ]);
 
         Positions::create($request->post());
@@ -36,35 +35,41 @@ class PositionController extends Controller
     }
 
 
-    public function show(Positions $positions)
+    public function show(Positions $position)
     {
         return view('positions.show', compact('positions'));
     }
 
 
-    public function edit(Positions $positions)
+    public function edit(Positions $position)
     {
-        return view('positions.edit', compact('positions'));
+        $title = "Edit Data position";
+        return view('positions.edit', compact('position', 'title'));
     }
 
 
-    public function update(Request $request, Positions $positions)
+    public function update(Request $request, Positions $position)
     {
         $request->validate([
             'name' => 'required',
-            'keterangan',
-            'alias'
+            'keterangan' => 'required',
+            'alias' => 'required',
         ]);
 
-        $positions->fill($request->post())->save();
+        $position->fill($request->post())->save();
 
         return redirect()->route('positions.index')->with('success', 'Positions Has Been updated successfully');
     }
 
-
-    public function destroy(Positions $positions)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Positions  $Positions
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Positions $position)
     {
-        $positions->delete();
+        $position->delete();
         return redirect()->route('positions.index')->with('success', 'Positions has been deleted successfully');
     }
 }

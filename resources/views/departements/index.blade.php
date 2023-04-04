@@ -7,30 +7,30 @@
 </div>
 @endif
 <div class="text-end mb-2">
-    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('positions.create') }}">Add Position</a>
+    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('departements.create') }}">Add Departement</a>
 </div>
 <br>
-<table class="table table-success table-striped">
+<table class="table table-primary table-striped">
     <thead>
-    <tbody class="table-succes ">
+    <tbody>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Keterangan</th>
-            <th scope="col">Alias</th>
+            <th scope="col">Nama Barang</th>
+            <th scope="col">Stok</th>
+            <th scope="col">Harga</th>
             <th scope="col">Aksi</th>
         </tr>
         </thead>
     <tbody>
-        @foreach ($positions as $data)
+        @foreach ($departements as $data)
         <tr>
             <td>{{ $data->id }}</td>
-            <td>{{ $data->name }}</td>
-            <td>{{ $data->keterangan }}</td>
-            <td>{{ $data->alias }}</td>
+            <td>{{ $data->nama_barang }}</td>
+            <td>{{ $data->stok}}</td>
+            <td>{{ $data->harga }}</td>
             <td>
-                <form action="{{ route('positions.destroy',$data->id) }}" method="Post">
-                    <a class="btn btn-warning" href="{{ route('positions.edit',$data->id) }}">Edit</a>
+                <form action="{{ route('departements.destroy',$data->id) }}" method="Post">
+                    <a class="btn btn-warning" href="{{ route('departements.edit',$data->id) }}">Edit</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>

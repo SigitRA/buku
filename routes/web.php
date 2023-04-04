@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\UserController; //mendaftarkan controler yang akan digunakan
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +36,6 @@ Route::middleware('auth')->group(
 
         // Route Position
         Route::resource('positions', PositionController::class);
+        Route::resource('departements', DepartementController::class);
     }
 );

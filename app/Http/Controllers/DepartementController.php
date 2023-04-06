@@ -24,9 +24,9 @@ class DepartementController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_barang' => 'required',
-            'stok',
-            'harga',
+            'name' => 'required',
+            'location',
+            'manager_id',
         ]);
 
         Departements::create($request->post());
@@ -51,9 +51,9 @@ class DepartementController extends Controller
     public function update(Request $request, Departements $departement)
     {
         $request->validate([
-            'nama_barang' => 'required',
-            'stok' => 'required',
-            'harga' => 'required',
+            'name' => 'required',
+            'location' => 'required',
+            'manager_id' => 'required',
         ]);
 
         $departement->fill($request->post())->save();

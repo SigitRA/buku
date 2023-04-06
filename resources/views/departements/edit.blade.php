@@ -6,27 +6,27 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>nama_barang:</strong>
-                <input type="text" name="nama_barang" value="{{ $departement->nama_barang }}" class="form-control" placeholder="departement nama_barang">
-                @error('nama_barang')
+                <strong>Nama :</strong>
+                <input type="text" name="name" value="{{ $departement->name }}" class="form-control" placeholder="departement name">
+                @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong> stok:</strong>
-                <input type="number" name="stok" class="form-control" placeholder="departement stok" value="{{ $departement->stok }}">
-                @error('stok')
+                <strong> Location :</strong>
+                <input type="text" name="location" class="form-control" placeholder="departement location" value="{{ $departement->location }}">
+                @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong> harga:</strong>
-                <input type="number" name="harga" value="{{ $departement->harga }}" class="form-control" placeholder="departement harga">
-                @error('harga')
+                <strong> Manager Id :</strong>
+                <input type="text" name="manager_id" value="{{ $departement->manager_id }}" class="form-control" placeholder="departement manager_id">
+                @error('manager_id')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>

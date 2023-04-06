@@ -5,30 +5,35 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama Barang :</strong>
-                <input type="text" name="nama_barang" class="form-control" placeholder="nama_barang">
-                @error('nama_barang')
+                <strong>Nama :</strong>
+                <input type="text" name="name" class="form-control" placeholder="name">
+                @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Stok</strong>
-                <input type="number" name="stok" class="form-control" placeholder="Stok">
-                @error('stok')
+                <strong>location</strong>
+                <input type="text" name="location" class="form-control" placeholder="location">
+                @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Harga :</strong>
-                <input type="number" name="harga" class="form-control" placeholder="Harga">
-                @error('harga')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
+                <label for="">Manager Id</label>
+                <select class="form-control" name="manager_id">
+                    @foreach ($departements as $departement)
+                    <option value="{{ $departements->id }}">{{ $departements->manager_id }}
+                    </option>
+                    @endforeach
+                </select>
             </div>
+            @error('manager_id')
+            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary mt-2 ml-3">Submit</button>
     </div>

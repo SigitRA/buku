@@ -22,14 +22,13 @@
                 @enderror
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong> Manager Id :</strong>
-                <input type="text" name="manager_id" value="{{ $departement->manager_id }}" class="form-control" placeholder="departement manager_id">
-                @error('manager_id')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
+        <div class="form-group">
+            <label for="manager_id">Manager</label>
+            <select name="manager_id" class="form-control">
+                @foreach ($managers as $manager)
+                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                @endforeach
+            </select>
         </div>
         <button type="submit" class="btn btn-primary ml-3">Submit</button>
     </div>

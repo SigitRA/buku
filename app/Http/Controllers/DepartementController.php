@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Departements;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class DepartementController extends Controller
 {
@@ -16,22 +17,23 @@ class DepartementController extends Controller
 
     public function create()
     {
-        $title = "Tambah data departement";
-        return view('departements.create', compact(['title']));
+        $title = "Tambah data";
+        $managers = User::where('position', 'manager')->get();
+        return view('departements.create', compact('managers', 'title'));
     }
 
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required',
-            'location',
-            'manager_id',
+            'location' => 'nullable',
+            'manager_id' => 'required',
         ]);
 
-        Departements::create($request->post());
+        Departements::create($validatedData);
 
-        return redirect()->route('departements.index')->with('success', 'Departements has been created successfully.');
+        return redirect()->route('departements.index')->with('success', 'Departement created successfully.');
     }
 
 
@@ -44,7 +46,8 @@ class DepartementController extends Controller
     public function edit(Departements $departement)
     {
         $title = "Edit Data departement";
-        return view('departements.edit', compact('departement', 'title'));
+        $managers = User::where('position', 'manager')->get();
+        return view('departements.edit', compact('departement', 'managers', 'title'));
     }
 
 

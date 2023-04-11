@@ -22,9 +22,10 @@
         </tr>
         </thead>
     <tbody>
+        @php $no = 1 @endphp
         @foreach ($departements as $data)
         <tr>
-            <td>{{ $data->id }}</td>
+            <td>{{ $no++ }}</td>
             <td>{{ $data->name }}</td>
             <td>{{ $data->location}}</td>
             <td>{{ $data->manager_id }}</td>

@@ -28,7 +28,13 @@
             <td>{{ $no++ }}</td>
             <td>{{ $data->name }}</td>
             <td>{{ $data->location}}</td>
-            <td>{{ $data->manager_id }}</td>
+            <td>
+                {{
+                    (isset($data->manager->email)) ?
+                $data->manager->email :
+                'Tidak Ada'
+                }}
+            </td>
             <td>
                 <form action="{{ route('departements.destroy',$data->id) }}" method="Post">
                     <a class="btn btn-warning" href="{{ route('departements.edit',$data->id) }}">Edit</a>

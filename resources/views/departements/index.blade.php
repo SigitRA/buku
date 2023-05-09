@@ -7,12 +7,14 @@
 </div>
 @endif
 <div class="text-end mb-2">
+    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('departements.exportPdf') }}">Export</a>
+</div>
+<div class="text-end mb-2">
     <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('departements.create') }}">Add Departement</a>
 </div>
 <br>
-<table class="table table-primary table-striped">
+<table id="example" class="table table-striped table-primary">
     <thead>
-    <tbody>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nama</th>
@@ -20,7 +22,7 @@
             <th scope="col">Manager id</th>
             <th scope="col">Aksi</th>
         </tr>
-        </thead>
+    </thead>
     <tbody>
         @php $no = 1 @endphp
         @foreach ($departements as $data)
@@ -47,4 +49,11 @@
         @endforeach
     </tbody>
 </table>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
 @endsection

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama :</strong>
+                <strong>Nama KU:</strong>
                 <input type="text" name="name" value="{{ $departement->name }}" class="form-control" placeholder="departement name">
                 @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>

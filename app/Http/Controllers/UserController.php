@@ -86,9 +86,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $title = "Data User";
-        $users = User::all();
-        return view('users.index', compact('users', 'title'));
+        $title = "Data user";
+        $users = User::orderBy('id', 'asc')->paginate(15);
+        return view('users.index', compact(['users', 'title']));
     }
 
     public function create()
@@ -113,11 +113,10 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'users has been created successfully.');
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        $title = "Ubah data user";
-        $users = User::findOrFail($id);
-        return view('users.index', compact('users', 'title'));
+        $title = "Edit Data position";
+        return view('users.edit', compact('user', 'title'));
     }
 
 

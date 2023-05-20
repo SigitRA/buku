@@ -26,10 +26,10 @@
         @foreach ($users as $data)
         <tr>
             <td>{{ $no++ }}</td>
-            <td>{{ $data->name }}</td>
-            <td>{{ $data->email}}</td>
-            <td>{{ $data->position}}</td>
-            <td>{{ $data->departement}}</td>
+            <td>{{$data->name}}</td>
+            <td>{{$data->email}}</td>
+            <td>{{$data->position}}</td>
+            <td>{{$data->departement}}</td>
             <td>
                 <form action="{{ route('users.destroy', $data->id) }}" method="POST">
                     <a class="btn btn-warning" href="{{ route('users.edit', $data->id) }}">Edit</a>

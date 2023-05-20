@@ -7,6 +7,9 @@
 </div>
 @endif
 <div class="text-end mb-2">
+    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('users.exportPdf') }}">Export</a>
+</div>
+<div class="text-end mb-2">
     <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('users.create') }}">Add User</a>
 </div>
 <br>

@@ -6,6 +6,7 @@ use App\Models\User; //Mengeksekusi database
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class UserController extends Controller
 {
@@ -146,5 +147,13 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function exportPdf()
+    {
+        $title = "Laporan Data User";
+        $users = User::orderBy('id', 'asc')->get();
+        $pdf = PDF::loadView('users.pdf', compact(['users', 'title']));
+        return $pdf->stream('laporan-user-pdf');
     }
 }

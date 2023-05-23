@@ -40,5 +40,6 @@ Route::middleware('auth')->group(
         Route::resource('users', UserController::class);
         Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
         Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
+        Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('positions.exportExcel');
     }
 );

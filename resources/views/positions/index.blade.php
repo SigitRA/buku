@@ -7,6 +7,9 @@
 </div>
 @endif
 <div class="text-end mb-2">
+    <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('position.exportExcel') }}">Export Excel</a>
+</div>
+<div class="text-end mb-2">
     <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('positions.create') }}">Add Position</a>
 </div>
 <br>

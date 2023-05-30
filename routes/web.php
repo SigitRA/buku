@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController; //mendaftarkan controler yang akan digu
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\RakController;
+use App\Http\Controllers\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +40,10 @@ Route::middleware('auth')->group(
         Route::resource('positions', PositionController::class);
         Route::resource('departements', DepartementController::class);
         Route::resource('users', UserController::class);
+        Route::resource('raks', RakController::class);
+        Route::resource('barangs', BarangController::class);
         Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
         Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
-        Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('positions.exportExcel');
+        Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
     }
 );

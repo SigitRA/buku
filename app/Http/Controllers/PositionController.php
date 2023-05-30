@@ -75,7 +75,8 @@ class PositionController extends Controller
         return redirect()->route('positions.index')->with('success', 'Positions has been deleted successfully');
     }
 
-    public function exportExcel(){
+    public function exportExcel()
+    {
         return Excel::download(new ExportPositions, 'Positions.xlsx');
     }
 }

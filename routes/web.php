@@ -45,5 +45,6 @@ Route::middleware('auth')->group(
         Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
         Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
         Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
+        Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
     }
 );

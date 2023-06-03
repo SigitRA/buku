@@ -66,4 +66,14 @@ class BarangController extends Controller
         $barang->delete();
         return redirect()->route('barangs.index')->with('success', 'Barang has been deleted successfully.');
     }
+
+    //fungsi search/pencarian data
+    public function autocomplete(Request $request)
+    {
+        $data = Barangs::select("name as value", "id")
+            ->where('name', 'LIKE', '%' . $request->get('search') . '%')
+            ->get();
+
+        return response()->json($data);
+    }
 }

@@ -6,6 +6,7 @@ use App\Models\Barangs;
 use Illuminate\Http\Request;
 use App\Exports\ExportBarangs;
 use Maatwebsite\Excel\Facades\Excel;
+use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class BarangController extends Controller
 {
@@ -38,8 +39,9 @@ class BarangController extends Controller
 
     public function show(Barangs $barang)
     {
-        return view('barangs.show', compact('barang'));
+        return response()->json($barang);
     }
+
 
     public function edit(Barangs $barang)
     {
@@ -70,8 +72,8 @@ class BarangController extends Controller
     //fungsi search/pencarian data
     public function autocomplete(Request $request)
     {
-        $data = Barangs::select("name as value", "id")
-            ->where('name', 'LIKE', '%' . $request->get('search') . '%')
+        $data = Barangs::select("nama_barang as value", "id")
+            ->where('nama_barang', 'LIKE', '%' . $request->get('search') . '%')
             ->get();
 
         return response()->json($data);

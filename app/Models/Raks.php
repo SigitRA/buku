@@ -12,6 +12,5 @@ class Raks extends Model
     protected $fillable = [
         'nama_rak',
         'kapasitas',
-        'alias',
     ];
 }

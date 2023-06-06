@@ -6,6 +6,9 @@ use App\Models\Raks;
 use Illuminate\Http\Request;
 
 class RakController extends Controller
+
+
+
 {
     public function index()
     {

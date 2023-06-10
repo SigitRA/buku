@@ -40,11 +40,11 @@ Route::middleware('auth')->group(
         Route::resource('positions', PositionController::class);
         Route::resource('departements', DepartementController::class);
         Route::resource('users', UserController::class);
-        Route::resource('raks', RakController::class);
         Route::resource('barangs', BarangController::class);
         Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
         Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
         Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
+        Route::resource('raks', RAKController::class);
         Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
         Route::resource('barangs', BarangController::class);
     }

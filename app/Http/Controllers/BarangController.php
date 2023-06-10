@@ -2,80 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barangs;
+use App\Models\Product;
+use App\Models\Barang;
 use Illuminate\Http\Request;
-use App\Exports\ExportBarangs;
-use Maatwebsite\Excel\Facades\Excel;
-use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class BarangController extends Controller
 {
-    public function index()
-    {
-        $title = "Data Barang";
-        $barangs = Barangs::orderBy('id', 'asc')->paginate(5);
-        return view('barangs.index', compact('barangs', 'title'));
-    }
-
-    public function create()
-    {
-        $title = "Tambah data barang";
-        return view('barangs.create', compact('title'));
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama_barang' => 'required',
-            'harga_barang' => 'nullable',
-            'stok' => 'nullable',
-            'rak' => 'nullable',
-        ]);
-
-        Barangs::create($request->all());
-
-        return redirect()->route('barangs.index')->with('success', 'Barang has been created successfully.');
-    }
-
-    public function show(Barangs $barang)
-    {
-        return response()->json($barang);
-    }
-
-
-    public function edit(Barangs $barang)
-    {
-        $title = "Edit Data Barang";
-        return view('barangs.edit', compact('barang', 'title'));
-    }
-
-    public function update(Request $request, Barangs $barang)
-    {
-        $request->validate([
-            'nama_barang' => 'required',
-            'harga_barang' => 'nullable',
-            'stok' => 'nullable',
-            'rak' => 'nullable',
-        ]);
-
-        $barang->update($request->all());
-
-        return redirect()->route('barangs.index')->with('success', 'Barang has been updated successfully.');
-    }
-
-    public function destroy(Barangs $barang)
-    {
-        $barang->delete();
-        return redirect()->route('barangs.index')->with('success', 'Barang has been deleted successfully.');
-    }
-
-    //fungsi search/pencarian data
     public function autocomplete(Request $request)
     {
-        $data = Barangs::select("nama_barang as value", "id")
+        $data = Barang::select("nama_barang as value", "id")
             ->where('nama_barang', 'LIKE', '%' . $request->get('search') . '%')
             ->get();
 
         return response()->json($data);
+    }
+    public function show(Barang $barang)
+    {
+        return response()->json($barang);
     }
 }

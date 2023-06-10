@@ -4,50 +4,39 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title',$title)</title>
+    <title>@yield('title', $title)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">INVENTARIS</a>
+            <a class="navbar-brand" href="#">Inventaris</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('positions.index')}}">Position</a>
+                        <a class="nav-link" href="{{ route('positions.index') }}">Position</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('departements.index')}}">Departement</a>
+                        <a class="nav-link" href="{{ route('departements.index') }}">Departement</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('users.index')}}">User</a>
-                    </li>
-                    @if(Auth()->user()->position =="1")
+                    @if(Auth()->user()->position == "0")
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Master
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('raks.index')}}">Rak</a></li>
-                            <li><a class="dropdown-item" href="{{route('barangs.index')}}">Barang</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Link
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="{{ route('raks.create') }}">Rak</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -70,7 +59,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">@yield('title',$title)</h1>
+                <h1 class="card-title">@yield('title', $title)</h1>
                 @yield('content')
             </div>
         </div>

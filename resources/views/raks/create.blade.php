@@ -101,83 +101,83 @@
         }
     });
 
-    function add(id) {
-        const barangPath = "{{ route('barangs.index') }}/" + id;
-        const rakPath = "{{ route('raks.index') }}"; // Ganti dengan endpoint URL untuk mendapatkan data dari tabel "RAK"
-        var html = "";
-        var no = 0;
-
-        if ($('#detail tr').length > no) {
-            html = $('#detail').html();
-            no = no + $('#detail tr').length;
-        }
-
-        $.ajax({
-            url: barangPath,
-            type: 'GET',
-            dataType: "json",
-            success: function(barangData) {
-                $.ajax({
-                    url: rakPath,
-                    type: 'GET',
-                    dataType: "json",
-                    success: function(rakData) {
-                        console.log(barangData);
-                        console.log(rakData);
-
-                        no++;
-                        html += '<tr>' +
-                            '<td>' + no + '<input type="hidden" name="id_barang' + no + '" class="form-control" value="' + barangData.id + '"></td>' +
-                            '<td><input type="text" name="nama_barang' + no + '" class="form-control" value="' + barangData.nama_barang + '"></td>' +
-                            '<td><input type="text" name="nama_rak' + no + '" class="form-control" value="' + rakData.nama_rak + '"></td>' +
-                            '<td><input type="text" name="stok' + no + '" class="form-control" oninput="sumStok(' + no + ', this.value)" value="1"></td>' +
-                            '<td><input type="text" name="sub_total' + no + '" class="form-control"></td>' +
-                            '<td><a href="#" class="btn btn-sm btn-danger">X</a></td>' +
-                            '</tr>';
-
-                        $('#detail').html(html);
-                        $("input[name=jml]").val(no);
-                        sumStok(no, 1);
-                    }
-                });
-            }
-        });
-    }
-
-
     // function add(id) {
-    //     const path = "{{ route('barangs.index') }}/" + id;
+    //     const barangPath = "{{ route('barangs.index') }}/" + id;
+    //     const rakPath = "{{ route('raks.index') }}"; // Ganti dengan endpoint URL untuk mendapatkan data dari tabel "RAK"
     //     var html = "";
     //     var no = 0;
+
     //     if ($('#detail tr').length > no) {
     //         html = $('#detail').html();
     //         no = no + $('#detail tr').length;
     //     }
+
     //     $.ajax({
-    //         url: path,
+    //         url: barangPath,
     //         type: 'GET',
     //         dataType: "json",
-    //         success: function(data) {
-    //             console.log(data);
-    //             no++;
-    //             html += '<tr>' +
-    //                 '<td>' + no + '<input type="hidden" name="id_barang' + no + '" class="form-control" value="' + data.id + '"></td>' +
-    //                 '<td><input type="text" name="nama_rak' + no + '" class="form-control" value="' + data.nama_rak + '"></td>' +
-    //                 '<td><input type="text" name="nama_barang' + no + '" class="form-control" value="' + data.nama_barang + '"></td>' +
-    //                 '<td><input type="text" name="stok' + no + '" class="form-control" oninput="sumStok(' + no + ', this.value)" value="1"></td>' +
-    //                 '<td><input type="text" name="sub_total' + no + '" class="form-control"></td>' +
-    //                 '<td><a href="#" class="btn btn-sm btn-danger">X</a></td>' +
-    //                 '</tr>';
-    //             $('#detail').html(html);
-    //             $("input[name=jml]").val(no);
-    //             sumStok(no, 1);
+    //         success: function(barangData) {
+    //             $.ajax({
+    //                 url: rakPath,
+    //                 type: 'GET',
+    //                 dataType: "json",
+    //                 success: function(rakData) {
+    //                     console.log(barangData);
+    //                     console.log(rakData);
+
+    //                     no++;
+    //                     html += '<tr>' +
+    //                         '<td>' + no + '<input type="hidden" name="id_barang' + no + '" class="form-control" value="' + barangData.id + '"></td>' +
+    //                         '<td><input type="text" name="nama_barang' + no + '" class="form-control" value="' + barangData.nama_barang + '"></td>' +
+    //                         '<td><input type="text" name="nama_rak' + no + '" class="form-control" value="' + rakData.nama_rak + '"></td>' +
+    //                         '<td><input type="text" name="stok' + no + '" class="form-control" oninput="sumStok(' + no + ', this.value)" value="1"></td>' +
+    //                         '<td><input type="text" name="sub_total' + no + '" class="form-control"></td>' +
+    //                         '<td><a href="#" class="btn btn-sm btn-danger">X</a></td>' +
+    //                         '</tr>';
+
+    //                     $('#detail').html(html);
+    //                     $("input[name=jml]").val(no);
+    //                     sumStok(no, 1);
+    //                 }
+    //             });
     //         }
     //     });
     // }
 
+
+    function add(id) {
+        const path = "{{ route('barangs.index') }}/" + id;
+        var html = "";
+        var no = 0;
+        if ($('#detail tr').length > no) {
+            html = $('#detail').html();
+            no = no + $('#detail tr').length;
+        }
+        $.ajax({
+            url: path,
+            type: 'GET',
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                no++;
+                html += '<tr>' +
+                    '<td>' + no + '<input type="hidden" name="id_barang' + no + '" class="form-control" value="' + data.id + '"></td>' +
+                    '<td><input type="text" name="nama_rak' + no + '" class="form-control" value="' + data.nama_rak + '"></td>' +
+                    '<td><input type="text" name="nama_barang' + no + '" class="form-control" value="' + data.nama_barang + '"></td>' +
+                    '<td><input type="text" name="stok' + no + '" class="form-control" oninput="sumStok(' + no + ', this.value)" value="1"></td>' +
+                    '<td><input type="text" name="sub_total' + no + '" class="form-control"></td>' +
+                    '<td><a href="#" class="btn btn-sm btn-danger">X</a></td>' +
+                    '</tr>';
+                $('#detail').html(html);
+                $("input[name=jml]").val(no);
+                sumStok(no, 1);
+            }
+        });
+    }
+
     function sumStok(no, q) {
         var stok = $("input[name=stok" + no + "]").val();
-        var subtotal = q * parseInt(stok);
+        var subtotal = stok;
         $("input[name=sub_total" + no + "]").val(subtotal);
         console.log(q + "*" + stok + "=" + subtotal);
         sumTotal();

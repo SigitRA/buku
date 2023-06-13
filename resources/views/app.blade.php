@@ -40,7 +40,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('raks.index') }}">Rak</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="{{ route('barangs.index') }}">Barang</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

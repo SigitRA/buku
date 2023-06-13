@@ -11,6 +11,7 @@ class RAK extends Model
     protected $fillable = [
         'no_inventaris',
         'nama_rak',
+        'tanggal',
         'kapasitas',
     ];
 }

@@ -1,7 +1,11 @@
 @extends('app')
 @section('content')
-<!-- Main content -->
+
 <select class="sel" name="year">
+    <option value="2019">Year 2023</option>
+    <option value="2019">Year 2022</option>
+    <option value="2019">Year 2021</option>
+    <option value="2019">Year 2020</option>
     <option value="2019">Year 2019</option>
     <option value="2018">Year 2018</option>
     <option value="2017">Year 2017</option>
@@ -33,5 +37,4 @@
         _refresh(original_api_url + "?year=" + year);
     });
 </script>
-<!-- /.content -->
 @endsection

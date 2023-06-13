@@ -23,6 +23,15 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Tanggal RAK:</strong>
+                <input type="date" name="tanggal" class="form-control" placeholder="Tanggal RAK">
+                @error('location')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Kapasitas :</strong>
                 <input type="number" name="kapasitas" class="form-control" placeholder="Kg">
                 @error('location')

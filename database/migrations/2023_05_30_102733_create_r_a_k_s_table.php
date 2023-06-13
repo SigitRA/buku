@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_inventaris')->nullable();
             $table->string('nama_rak')->nullable();
+            $table->date('tanggal')->nullable();
             $table->integer('kapasitas')->nullable();
             $table->timestamps();
         });

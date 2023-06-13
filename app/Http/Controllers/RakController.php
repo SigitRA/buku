@@ -33,6 +33,7 @@ class RAKController extends Controller
         $rak = [
             'no_inventaris' => $request->no_inventaris,
             'nama_rak' => $request->nama_rak,
+            'tanggal' => $request->tanggal,
             'kapasitas' => $request->kapasitas,
         ];
         if ($result = RAK::create($rak)) {
@@ -67,6 +68,7 @@ class RAKController extends Controller
         $raks = [
             'no_inventaris' => $request->no_inventaris,
             'nama_rak' => $request->nama_rak,
+            'tanggal' => $request->tanggal,
             'kapasitas' => $request->kapasitas,
         ];
         if ($rak->fill($raks)->save()) {
@@ -97,12 +99,12 @@ class RAKController extends Controller
 
     public function chartLine()
     {
-        $api = url('raks.ChartLineAjax');
+        $api = url(route('raks.chartLineAjax'));
 
-        $chart = new RakLineChart;
+        $chart = new RAKLineChart;
         $chart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])->load($api);
-
-        return view('home', compact('chart'));
+        $title = "Chart Ajax";
+        return view('home', compact('chart', 'title'));
     }
 
     /**
@@ -114,13 +116,13 @@ class RAKController extends Controller
     {
         $year = $request->has('year') ? $request->year : date('Y');
         $raks = RAK::select(\DB::raw("COUNT(*) as count"))
-            ->whereYear('tgl_rak', $year)
-            ->groupBy(\DB::raw("Month(created_at)"))
+            ->whereYear('tanggal', $year)
+            ->groupBy(\DB::raw("Month(tanggal)"))
             ->pluck('count');
 
-        $chart = new RakLineChart;
+        $chart = new RAKLineChart;
 
-        $chart->dataset('New User Register Chart', 'line', $raks)->options([
+        $chart->dataset('New RAK Register Chart', 'bar', $raks)->options([
             'fill' => 'true',
             'borderColor' => '#51C1C0'
         ]);

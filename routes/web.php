@@ -47,7 +47,7 @@ Route::middleware('auth')->group(
         Route::resource('raks', RAKController::class);
         Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
         Route::resource('barangs', BarangController::class);
-        Route::get('chart-line', RAKController::class, 'chartLine');
-        Route::get('chart-line-ajax', RAKController::class, 'chartLineAjax');
+        Route::get('home', [RAKController::class, 'chartLine']);
+        Route::get('chart-line-ajax', [RAKController::class, 'chartLineAjax'])->name('raks.chartLineAjax');
     }
 );

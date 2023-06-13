@@ -1,98 +1,67 @@
 @extends('app')
 @section('content')
-<form action="{{ route('rabs.update', $rab->id ) }}" method="POST" enctype="multipart/form-data">
-    @method('PUT')
+<form action="{{ route('raks.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>NO RAB:</strong>
-                <input type="text" name="no_trx" class="form-control" placeholder="NO RAB" value="{{ $rab->no_trx }}" disabled>
-                @error('no_rab')
+                <strong>No Inventaris</strong>
+                <input type="text" name="no_inventaris" class="form-control" placeholder="No iNventaris">
+                @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Tanggal RAB:</strong>
-                <input type="date" name="tgl_rab" class="form-control" placeholder="Tanggal RAB" value="{{ $rab->tgl_rab }}">
-                @error('tgl_rab')
+                <strong>Nama Rak :</strong>
+                <input type="text" name="nama_rak" class="form-control" placeholder="Nama Rak">
+                @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Penyusun :</strong>
-                <select name="penyusun" id="penyusun" class="form-select">
-                    <option value="">Pilih</option>
-                    @foreach ($managers as $item)
-                    <option value="{{ $item->id }}" {{ ($item->id==$rab->penyusun)? 'selected': ''}}>{{ $item->name }}</option>
-                    @endforeach
-                </select>
-                @error('id_penyusun')
+                <strong>Kapasitas :</strong>
+                <input type="number" name="kapasitas" class="form-control" placeholder="Kg">
+                @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="row col-xs-12 col-sm-12 col-md-12 mt-3">
-            <div class="form-group col-10">
-                <input type="text" name="search" id="search" class="form-control" placeholder="Masukan Nama Product">
-                @error('search')
+            <div class="col-md-10 form-group">
+                <input type="text" name="search" id="search" class="form-control" placeholder="Masukan Nama Barang">
+                @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="form-group col-2">
-                <button type="text" class="btn btn-secondary"> Tambah </button>
+            <div class="col-md-2 form-group text-center">
+                <button class="btn btn-success" type="button" name="btnAdd" id="btnAdd"><i class="fa fa-plus"></i>Tambah</button>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-            <table id="example" class="table table-striped" style="width:100%">
+            <table id="example" class="table table-striped table-success" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">QTY</th>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Stok</th>
                         <th scope="col">Sub Total</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody id="detail">
-                    <?php $no = 0; ?>
-                    @foreach($detail as $item)
-                    <?php $no++ ?>
-                    <tr>
-                        <td>
-                            <input type="hidden" name="productId{{$no}}" class="form-control" value="{{$item->id_product}}">
-                            <span>{{$no}}</span>
-                        </td>
-                        <td>
-                            <input type="text" name="productName{{$no}}" class="form-control" value="{{$item->getProduct->name}}">
-                        </td>
-                        <td>
-                            <input type="text" name="price{{$no}}" class="form-control" value="{{$item->price}}">
-                        </td>
-                        <td>
-                            <input type="number" name="qty{{$no}}" class="form-control" oninput="sumQty('{{$no}}',this.value)" value="{{$item->qty}}">
-                        </td>
-                        <td>
-                            <input type="number" name="sub_total{{$no}}" class="form-control" value="{{$item->sub_total}}">
-                        </td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-danger">X</a>
-                        </td>
-                    </tr>
-                    @endforeach
+
                 </tbody>
             </table>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <input type="hidden" name="jml" class="form-control" value="{{count($detail)}}">
+                <input type="text" name="jml" class="form-control">
                 <div class="form-group">
                     <strong>Grand Total:</strong>
-                    <input type="text" name="total" class="form-control" placeholder="Rp. 0" value="{{$rab->total}}">
-                    @error('tgl_rab')
+                    <input type="text" name="total" class="form-control" placeholder="0">
+                    @error('kapasitas')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
                 </div>
@@ -104,7 +73,7 @@
 @endsection
 @section('js')
 <script type="text/javascript">
-    var path = "{{ route('search.product') }}";
+    var path = "{{ route('search.barang') }}";
 
     $("#search").autocomplete({
         source: function(request, response) {
@@ -122,10 +91,10 @@
         },
         select: function(event, ui) {
             $('#search').val(ui.item.label);
-            //    console.log($("input[name=jml]").val());
+            console.log($("input[name=jml]").val());
             if ($("input[name=jml]").val() > 0) {
                 for (let i = 1; i <= $("input[name=jml]").val(); i++) {
-                    id = $("input[name=productId" + i + "]").val();
+                    id = $("input[name=id_product" + i + "]").val();
                     if (id == ui.item.id) {
                         alert(ui.item.value + ' sudah ada!');
                         break;
@@ -140,55 +109,42 @@
         }
     });
 
+
+
     function add(id) {
-        // console.log(id);
-        const path = "{{ route('products.index') }}/" + id;
+        const path = "{{ route('barangs.index') }}/" + id;
         var html = "";
         var no = 0;
+        if ($('#detail tr').length > no) {
+            html = $('#detail').html();
+            no = no + $('#detail tr').length;
+        }
         $.ajax({
             url: path,
             type: 'GET',
             dataType: "json",
-
             success: function(data) {
-                if ($('#detail tr').length > no) {
-                    html = $('#detail').html();
-                    no = $('#detail tr').length;
-                }
+                console.log(data);
                 no++;
                 html += '<tr>' +
-                    '<td>' +
-                    '<input type="hidden" name="productId' + no + '" class="form-control" value="' + data.id + '">' +
-                    '<span>' + no + '</span>' +
-                    '</td>' +
-                    '<td>' +
-                    '<input type="text" name="productName' + no + '" class="form-control" value="' + data.name + '" >' +
-                    '</td>' +
-                    '<td>' +
-                    '<input type="text" name="price' + no + '" class="form-control" value="' + data.price + '" >' +
-                    '</td>' +
-                    '<td>' +
-                    '<input type="number" name="qty' + no + '" class="form-control" oninput="sumQty(' + no + ',this.value)">' +
-                    '</td>' +
-                    '<td>' +
-                    '<input type="number" name="sub_total' + no + '" class="form-control" >' +
-                    '</td>' +
-                    '<td>' +
-                    '<a href="#" class="btn btn-sm btn-danger">X</a>' +
-                    '</td>' +
+                    '<td>' + no + '<input type="hidden" name="id_barang' + no + '" class="form-control" value="' + data.id + '"></td>' +
+                    '<td><input type="text" name="nama_barang' + no + '" class="form-control" value="' + data.nama_barang + '"></td>' +
+                    '<td><input type="text" name="stok' + no + '" class="form-control" oninput="sumStok(' + no + ', this.value)" value="1"></td>' +
+                    '<td><input type="text" name="sub_total' + no + '" class="form-control"></td>' +
+                    '<td><a href="#" class="btn btn-sm btn-danger">X</a></td>' +
                     '</tr>';
-
                 $('#detail').html(html);
                 $("input[name=jml]").val(no);
+                sumStok(no, 1);
             }
         });
     }
 
-    function sumQty(no, q) {
-        var price = $("input[name=price" + no + "]").val();
-        var subtotal = q * parseInt(price);
+    function sumStok(no, q) {
+        var stok = $("input[name=stok" + no + "]").val();
+        var subtotal = stok;
         $("input[name=sub_total" + no + "]").val(subtotal);
-        console.log(q + "*" + price + "=" + subtotal);
+        console.log(q + "*" + stok + "=" + subtotal);
         sumTotal();
     }
 

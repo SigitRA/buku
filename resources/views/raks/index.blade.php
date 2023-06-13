@@ -1,46 +1,40 @@
 @extends('app')
 @section('content')
 @if(session('success'))
-<div class="alert alert-success  alert-dismissible fade show" role="alert">
+<div class="alert alert-success alert-dismissible fade show">
   {{ session('success') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" 
-  aria-label="Close"></button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 <div class="text-end mb-2">
-<a class="btn btn-light" href="{{ route('departements.exportPdf') }}"> Export</a>
-<a class="btn btn-secondary" href="{{ route('departements.create') }}"> Add Departement</a>
+  <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('raks.create') }}">Add Rak</a>
 </div>
-<table id="example" class="table table-striped" style="width:100%">
+<br>
+<table class="table table-success table-striped">
   <thead>
+  <tbody class="table-succes ">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nama</th>
-      <th scope="col">Keterangan</th>
-      <th scope="col">Manager Name</th>
-      <th scope="col">Action</th>
+      <th scope="col">Nama Rak</th>
+      <th scope="col">Kapasitas</th>
+      <th scope="col">Aksi</th>
     </tr>
-  </thead>
+    </thead>
   <tbody>
-    @foreach ($departements as $data)
+    @php $no = 1 @endphp
+    @foreach ($raks as $data)
     <tr>
-        <td>{{ $data->id }}</td>
-        <td>{{ $data->name }}</td>
-        <td>{{ $data->location }}</td>
-        <td>{{ 
-          (isset($data->getManager->email)) ? 
-          $data->getManager->email : 
-          'Tidak Ada'
-          }}
-        </td>
-        <td>
-            <form action="{{ route('departements.destroy',$data->id) }}" method="Post">
-                <a class="btn btn-primary" href="{{ route('departements.edit',$data->id) }}">Edit</a>
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </td>
+      <td>{{ $no++ }}</td>
+      <td>{{ $data->nama_rak }}</td>
+      <td>{{ $data->kapasitas }}</td>
+      <td>
+        <form action="{{ route('raks.destroy',$data->id) }}" method="Post">
+          <a class="btn btn-warning" href="{{ route('raks.edit',$data->id) }}">Edit</a>
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
     </tr>
     @endforeach
   </tbody>
@@ -48,8 +42,8 @@
 @endsection
 @section('js')
 <script>
-  $(document).ready(function () {
-      $('#example').DataTable();
+  $(document).ready(function() {
+    $('#example').DataTable();
   });
 </script>
 @endsection

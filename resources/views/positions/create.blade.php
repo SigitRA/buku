@@ -1,4 +1,4 @@
-@extends('tmp')
+@extends('app')
 @section('content')
 <form action="{{ route('positions.store') }}" method="POST" enctype="multipart/form-data">
     @csrf

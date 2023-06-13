@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\RAK;
 use App\Models\RAKDetail;
 use Illuminate\Http\Request;
+use App\Charts\RakLineChart;
 
 class RAKController extends Controller
 {
@@ -26,18 +27,19 @@ class RAKController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required'
+            'no_inventaris' => 'required'
         ]);
 
         $rak = [
+            'no_inventaris' => $request->no_inventaris,
             'nama_rak' => $request->nama_rak,
             'kapasitas' => $request->kapasitas,
         ];
         if ($result = RAK::create($rak)) {
             for ($i = 1; $i <= $request->jml; $i++) {
                 $details = [
-                    'id_barang' => $request->id_barang,
-                    'nama_rak' => $request->nama_rak,
+                    'no_inventaris' => $request->no_inventaris,
+                    'id_barang' => $request['id_barang' . $i],
                     'stok' => $request['stok' . $i],
                     'sub_total' => $request['sub_total' . $i],
                 ];
@@ -56,24 +58,23 @@ class RAKController extends Controller
     {
         $title = "Edit Data RAK";
         $managers = User::where('position', '1')->orderBy('id', 'asc')->get();
-        $detail = RAKDetail::where('nama_rak', $rak->nama_rak)->orderBy('id', 'asc')->get();
+        $detail = RAKDetail::where('no_inventaris', $rak->no_inventaris)->orderBy('id', 'asc')->get();
         return view('raks.edit', compact('rak', 'title', 'managers', 'detail'));
     }
 
     public function update(Request $request, RAK $rak)
     {
         $raks = [
-
+            'no_inventaris' => $request->no_inventaris,
             'nama_rak' => $request->nama_rak,
             'kapasitas' => $request->kapasitas,
         ];
         if ($rak->fill($raks)->save()) {
-            RAKDetail::where('id', $rak->id)->delete();
+            RAKDetail::where('no_inventaris', $rak->no_ineventaris)->delete();
             for ($i = 1; $i <= $request->jml; $i++) {
                 $details = [
-
-                    'id_barang' => $request->id_barang,
-                    'nama_rak' => $request->nama_rak,
+                    'no_inventaris' => $request->no_inventaris,
+                    'id_barang' => $request['id_barang' . $i],
                     'stok' => $request['stok' . $i],
                     'sub_total' => $request['sub_total' . $i],
                 ];
@@ -88,5 +89,42 @@ class RAKController extends Controller
     {
         $rak->delete();
         return redirect()->route('raks.index')->with('success', 'Departement has been deleted successfully');
+    }
+
+
+
+
+
+    public function chartLine()
+    {
+        $api = url('raks.ChartLineAjax');
+
+        $chart = new RakLineChart;
+        $chart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])->load($api);
+
+        return view('home', compact('chart'));
+    }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public function chartLineAjax(Request $request)
+    {
+        $year = $request->has('year') ? $request->year : date('Y');
+        $raks = RAK::select(\DB::raw("COUNT(*) as count"))
+            ->whereYear('tgl_rak', $year)
+            ->groupBy(\DB::raw("Month(created_at)"))
+            ->pluck('count');
+
+        $chart = new RakLineChart;
+
+        $chart->dataset('New User Register Chart', 'line', $raks)->options([
+            'fill' => 'true',
+            'borderColor' => '#51C1C0'
+        ]);
+
+        return $chart->api();
     }
 }

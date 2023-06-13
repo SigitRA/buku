@@ -25,6 +25,9 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">User</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('positions.index') }}">Position</a>
                     </li>
                     <li class="nav-item">
@@ -36,7 +39,7 @@
                             Master
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('raks.create') }}">Rak</a></li>
+                            <li><a class="dropdown-item" href="{{ route('raks.index') }}">Rak</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li>
                                 <hr class="dropdown-divider">

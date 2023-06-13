@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama Rak :</strong>
-                <input type="text" name="nama_barang" class="form-control" placeholder="Nama Barang">
+                <strong>No Inventaris</strong>
+                <input type="text" name="no_inventaris" class="form-control" placeholder="No iNventaris">
                 @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -14,8 +14,17 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Nama Rak :</strong>
+                <input type="text" name="nama_rak" class="form-control" placeholder="Nama Rak">
+                @error('location')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Kapasitas :</strong>
-                <input type="number" name="kapasitas" class="form-control" placeholder="Kapasitas">
+                <input type="number" name="kapasitas" class="form-control" placeholder="Kg">
                 @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -37,7 +46,6 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nama Rak</th>
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Stok</th>
                         <th scope="col">Sub Total</th>
@@ -162,7 +170,6 @@
                 no++;
                 html += '<tr>' +
                     '<td>' + no + '<input type="hidden" name="id_barang' + no + '" class="form-control" value="' + data.id + '"></td>' +
-                    '<td><input type="text" name="nama_rak' + no + '" class="form-control" value="' + data.nama_rak + '"></td>' +
                     '<td><input type="text" name="nama_barang' + no + '" class="form-control" value="' + data.nama_barang + '"></td>' +
                     '<td><input type="text" name="stok' + no + '" class="form-control" oninput="sumStok(' + no + ', this.value)" value="1"></td>' +
                     '<td><input type="text" name="sub_total' + no + '" class="form-control"></td>' +

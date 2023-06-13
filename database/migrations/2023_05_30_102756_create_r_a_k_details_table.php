@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('r_a_k_details', function (Blueprint $table) {
             $table->id();
+            $table->string('no_inventaris')->nullable();
             $table->integer('id_barang')->nullable();
-            $table->string('nama_rak')->nullable();
             $table->integer('stok')->nullable();
             $table->integer('sub_total')->nullable();
             $table->timestamps();

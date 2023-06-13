@@ -9,8 +9,8 @@ class RAKDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'no_inventaris',
         'id_barang',
-        'nama_rak',
         'stok',
         'sub_total',
     ];
@@ -18,10 +18,5 @@ class RAKDetail extends Model
     public function getBarang()
     {
         return $this->belongsTo(Barang::class, 'id_barang', 'id');
-    }
-
-    public function getRak()
-    {
-        return $this->belongsTo(RAK::class, 'nama_rak', 'id');
     }
 }

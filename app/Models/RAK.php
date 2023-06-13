@@ -9,6 +9,7 @@ class RAK extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'no_inventaris',
         'nama_rak',
         'kapasitas',
     ];

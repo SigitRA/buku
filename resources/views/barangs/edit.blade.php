@@ -24,7 +24,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>kondisi_barang:</strong>
+                <strong>Kondisi Barang:</strong>
                 <input type="text" name="kondisi_barang" class="form-control" value="{{ $barang->kondisi_barang }}" placeholder="kondisi_barang">
                 @error('kondisi_barang')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>

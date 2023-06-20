@@ -47,7 +47,7 @@ class RAKController extends Controller
                 RAKDetail::create($details);
             }
         }
-        return redirect()->route('positions.index')->with('success', 'Position has been created successfully.');
+        return redirect()->route('raks.index')->with('success', 'Position has been created successfully.');
     }
 
     public function show(RAK $rak)
@@ -72,7 +72,7 @@ class RAKController extends Controller
             'kapasitas' => $request->kapasitas,
         ];
         if ($rak->fill($raks)->save()) {
-            RAKDetail::where('no_inventaris', $rak->no_ineventaris)->delete();
+            RAKDetail::where('no_inventaris', $rak->no_inventaris)->delete();
             for ($i = 1; $i <= $request->jml; $i++) {
                 $details = [
                     'no_inventaris' => $request->no_inventaris,
@@ -86,6 +86,7 @@ class RAKController extends Controller
 
         return redirect()->route('raks.index')->with('success', 'Departement Has Been updated successfully');
     }
+
 
     public function destroy(RAK $rak)
     {

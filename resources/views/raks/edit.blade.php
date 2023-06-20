@@ -1,13 +1,13 @@
 @extends('app')
 @section('content')
-<form action="{{ route('raks.update') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('raks.update', $rak->no_inventaris) }} }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>No Inventaris</strong>
-                <input type="text" name="no_inventaris" class="form-control" placeholder="No iNventaris">
-                @error('name')
+                <input type="text" name="no_inventaris" class="form-control" placeholder="No iNventaris" value="{{ $rak->no_inventaris }}">
+                @error('no_inventaris')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
@@ -15,8 +15,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama Rak :</strong>
-                <input type="text" name="nama_rak" class="form-control" placeholder="Nama Rak">
-                @error('location')
+                <input type="text" name="nama_rak" class="form-control" placeholder="Nama Rak" value="{{ $rak->nama_rak }}">
+                @error('nama_rak')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
@@ -24,8 +24,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Kapasitas :</strong>
-                <input type="number" name="kapasitas" class="form-control" placeholder="Kg">
-                @error('location')
+                <input type="number" name="kapasitas" class="form-control" placeholder="Kg" value="{{ $rak->kapasitas }}">
+                @error('kapasitas')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>

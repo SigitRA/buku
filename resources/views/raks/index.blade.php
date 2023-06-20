@@ -7,7 +7,10 @@
 </div>
 @endif
 <div class="text-end mb-2">
-  <a class="btn btn-success" style="margin-top: 20px;" href="{{ route('raks.create') }}">Add Rak</a>
+  <a class="btn btn-primary" style="margin-top: 20px;" href="{{ route('raks.chartLine') }}">Chart</a>
+</div>
+<div class="text-end mb-2">
+  <a class="btn btn-success" style="margin-top: 10px;" href="{{ route('raks.create') }}">Add Rak</a>
 </div>
 <br>
 <table class="table table-success table-striped">

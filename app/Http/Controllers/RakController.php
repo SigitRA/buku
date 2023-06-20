@@ -104,7 +104,7 @@ class RAKController extends Controller
         $chart = new RAKLineChart;
         $chart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])->load($api);
         $title = "Chart Ajax";
-        return view('home', compact('chart', 'title'));
+        return view('chart', compact('chart', 'title'));
     }
 
     /**

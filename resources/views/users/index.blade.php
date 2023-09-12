@@ -1,4 +1,4 @@
-@extends('app')
+@extends('tmp')
 @section('content')
 @if(session('success'))
 <div class="alert alert-primary alert-dismissible fade show" role="alert">

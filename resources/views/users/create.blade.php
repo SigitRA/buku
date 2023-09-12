@@ -1,4 +1,4 @@
-@extends('app')
+@extends('tmp')
 @section('content')
 
 <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">

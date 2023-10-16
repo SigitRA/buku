@@ -30,7 +30,7 @@ class BarangController extends Controller
 
     public function create()
     {
-        $title = "Tambah data barang";
+        $title = "";
         return view('barangs.create', compact('title'));
     }
 

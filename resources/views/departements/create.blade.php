@@ -4,6 +4,7 @@
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
+            <br>
             <div class="form-group">
                 <strong>Nama :</strong>
                 <input type="text" name="name" class="form-control" placeholder="name">
@@ -26,7 +27,7 @@
             <select name="manager_id" class="form-select">
                 <option value="">Pilih</option>
                 @foreach ($managers as $manager)
-                <option value="{{ $manager->id }}">{{ $manager->email }}</option>
+                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
                 @endforeach
             </select>
         </div>

@@ -26,9 +26,13 @@
                                     <label>Password <span class="text-danger">*</span></label>
                                     <input class="form-control" type="password" name="password" />
                                 </div>
+                                <p style="font-size:small;">Tidak punya akun? Klik <a href="/register" style="color: blue; text-decoration: none; cursor: pointer;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">disini</a></p>
+
                                 <div class="mb-3">
+                                    <div class="text-center">
                                     <button class="btn btn-primary">Login</button>
-                                    <a class="btn btn-danger" href="{{ route('home') }}">Back</a>
+                                    </div>
+                                    
                                 </div>
                             </form>
                         </div>
@@ -37,5 +41,4 @@
             </div>
         </div>
     </div>
-
     @endsection

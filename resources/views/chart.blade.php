@@ -1,4 +1,4 @@
-@extends('app')
+@extends('tmp')
 @section('content')
 
 <select class="sel" name="year">

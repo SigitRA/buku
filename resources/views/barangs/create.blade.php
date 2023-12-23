@@ -1,4 +1,4 @@
-@extends('app')
+@extends('tmp')
 @section('content')
 <form action="{{ route('barangs.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -30,7 +30,7 @@
                 @enderror
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-2 ml-3">Submit</button>
+        <button type="submit" class="btn btn-primary mt-2 ml-3">Submitt</button>
     </div>
 </form>
 @endsection

@@ -32,8 +32,8 @@
             <td>{{ $data->location}}</td>
             <td>
                 {{
-                    (isset($data->manager->email)) ?
-                $data->manager->email :
+                    (isset($data->manager->name)) ?
+                $data->manager->name :
                 'Tidak Ada'
                 }}
             </td>

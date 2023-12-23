@@ -6,7 +6,7 @@
             <div class="col-md-8 col-lg-6 col-xxl-3">
                 <div class="card mb-0">
                     <div class="card-body">
-                        <h2 class="text-center">INVENTARIS</h2>
+                        <h2 class="text-center">Pembelian</h2>
                         @if($errors->any())
                         @foreach($errors->all() as $err)
                         <p class="alert alert-danger">{{ $err }}</p>

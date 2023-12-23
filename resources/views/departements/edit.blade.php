@@ -1,4 +1,4 @@
-@extends('app')
+@extends('tmp')
 @section('content')
 <form action="{{ route('departements.update',$departement->id) }}" method="POST" enctype="multipart/form-data">
     @csrf

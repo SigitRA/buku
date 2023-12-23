@@ -1,4 +1,4 @@
-@extends('app')
+@extends('tmp')
 @section('content')
 <table class="table">
     <thead>

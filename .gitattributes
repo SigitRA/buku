@@ -1,10 +1,14 @@
-* text=auto
+# Mengabaikan konversi otomatis karakter baris untuk file composer.lock
+composer.lock -text
 
+# Mengatur konfigurasi Git untuk menangani karakter baris dan perbedaan file
+* text=auto
 *.blade.php diff=html
 *.css diff=css
 *.html diff=html
 *.md diff=markdown
 *.php diff=php
 
+# Mengabaikan file/folder saat ekspor dari repositori
 /.github export-ignore
 CHANGELOG.md export-ignore

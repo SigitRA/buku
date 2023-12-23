@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>No Inventaris</strong>
+                <strong>No Trx</strong>
                 <input type="text" name="no_trx" class="form-control" placeholder="No iNventaris">
                 @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -15,7 +15,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama pembeli :</strong>
-                <input type="text" name="nama_pembeli" class="form-control" placeholder="Nama Rak">
+                <input type="text" name="nama_pembeli" class="form-control" placeholder="Nama Beli">
                 @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -23,8 +23,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Tanggal RAK:</strong>
-                <input type="date" name="tanggal" class="form-control" placeholder="Tanggal RAK">
+                <strong>Tanggal Beli:</strong>
+                <input type="date" name="tanggal" class="form-control" placeholder="Tanggal Beli">
                 @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror

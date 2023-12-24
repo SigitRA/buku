@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Informasi Gaji</title>
+    <title>Penjualan</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    
 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +47,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-coins me-2"></i>pembelian</h3>
+                    <h3 class="text-primary"><i class="fa fa-coins me-2"></i>Penjualan</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">

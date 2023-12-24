@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>No Trx</strong>
-                <input type="text" name="no_trx" class="form-control" placeholder="No iNventaris">
+                <input type="text" name="no_trx" class="form-control" placeholder="No trx">
                 @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -33,7 +33,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>jenis_kelamin :</strong>
-                <input type="text" name="jenis_kelamin" class="form-control" placeholder="Kg">
+                <input type="text" name="jenis_kelamin" class="form-control" placeholder="jenis kelamin">
                 @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror

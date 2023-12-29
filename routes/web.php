@@ -6,8 +6,10 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RakController;
-use App\Http\Controllers\BarangController;
-use App\Http\Controllers\PembeliController;
+
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PenyimapananController;
+use App\Http\Controllers\PenyimpananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,14 +43,14 @@ Route::middleware('auth')->group(
         Route::resource('positions', PositionController::class);
         Route::resource('departements', DepartementController::class);
         Route::resource('users', UserController::class);
-        Route::resource('barangs', BarangController::class);
+        Route::resource('bukus', BukuController::class);
         Route::get('departement/export-pdf', [DepartementController::class, 'exportPdf'])->name('departements.exportPdf');
         Route::get('user/export-pdf', [UserController::class, 'exportPdf'])->name('users.exportPdf');
         Route::get('position/export-excel', [PositionController::class, 'exportExcel'])->name('position.exportExcel');
-        Route::resource('pembelis', PembeliController::class);
-        Route::get('search/barang', [BarangController::class, 'autocomplete'])->name('search.barang');
-        Route::resource('barangs', BarangController::class);
-        Route::get('chart-line', [PembeliController::class, 'chartLine'])->name('pembelis.chartLine');
-        Route::get('chart-line-ajax', [PembeliController::class, 'chartLineAjax'])->name('pembelis.chartLineAjax');
+        Route::resource('penyimpanans', PenyimpananController::class);
+        Route::get('search/buku', [BukuController::class, 'autocomplete'])->name('search.buku');
+        Route::resource('bukus', BukuController::class);
+        Route::get('chart-line', [PenyimpananController::class, 'chartLine'])->name('penyimpanans.chartLine');
+        Route::get('chart-line-ajax', [PenyimpananController::class, 'chartLineAjax'])->name('penyimpanans.chartLineAjax');
     }
 );

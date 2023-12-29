@@ -7,10 +7,10 @@
 </div>
 @endif
 <div class="text-end mb-2">
-  <a class="btn btn-primary" style="margin-top: 20px;" href="{{ route('pembelis.chartLine') }}">Chart</a>
+  <a class="btn btn-primary" style="margin-top: 20px;" href="{{ route('penyimpanans.chartLine') }}">Chart</a>
 </div>
 <div class="text-end mb-2">
-  <a class="btn btn-success" style="margin-top: 10px;" href="{{ route('pembelis.create') }}">Tambah Pembelian</a>
+  <a class="btn btn-success" style="margin-top: 10px;" href="{{ route('penyimpanans.create') }}">Tambah Pembelian</a>
 </div>
 <br>
 <table class="table table-success table-striped">
@@ -18,21 +18,21 @@
   <tbody class="table-succes ">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nama Pembeli</th>
-      <th scope="col">jenis_kelamin</th>
+      <th scope="col">Lorong</th>
+      <th scope="col">Genre</th>
       <th scope="col">Aksi</th>
     </tr>
     </thead>
   <tbody>
     @php $no = 1 @endphp
-    @foreach ($pembelis as $data)
+    @foreach ($penyimpanans as $data)
     <tr>
       <td>{{ $no++ }}</td>
-      <td>{{ $data->nama_pembeli }}</td>
-      <td>{{ $data->jenis_kelamin }}</td>
+      <td>{{ $data->lorong }}</td>
+      <td>{{ $data->genre }}</td>
       <td>
-        <form action="{{ route('pembelis.destroy',$data->id) }}" method="Post">
-          <a class="btn btn-warning" href="{{ route('pembelis.edit',$data->id) }}">Edit</a>
+        <form action="{{ route('penyimpanans.destroy',$data->id) }}" method="Post">
+          <a class="btn btn-warning" href="{{ route('penyimpanans.edit',$data->id) }}">Edit</a>
           @csrf
           @method('DELETE')
           <button type="submit" class="btn btn-danger">Delete</button>

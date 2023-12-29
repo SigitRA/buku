@@ -21,7 +21,6 @@
         }
 
         .container-fluid {
-            background-image: url('admin/dist/img/1.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -41,7 +40,7 @@
 
 <body>
 
-<div class="container-fluid" style="background-image: url('admin/dist/img/1.jpg');">
+<div class="container-fluid">
     <div class="card-body">
         @yield('content')
     </div>

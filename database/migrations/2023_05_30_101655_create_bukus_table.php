@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pembelis', function (Blueprint $table) {
+        Schema::create('bukus', function (Blueprint $table) {
             $table->id();
-            $table->string('no_trx')->nullable();
-            $table->string('nama_pembeli')->nullable();
-            $table->date('tanggal')->nullable();
-            $table->string('jenis_kelamin')->nullable();
+            $table->string('nama_buku')->nullable();
+            $table->string('penerbit')->nullable();
+            $table->string('tahun_terbit')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pembelis');
+        Schema::dropIfExists('bukus');
     }
 };

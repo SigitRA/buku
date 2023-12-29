@@ -4,7 +4,7 @@ namespace App\Charts;
 
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
-class PembeliLineChart extends Chart
+class PenyimpananLineChart extends Chart
 {
     /**
      * Initializes the chart.

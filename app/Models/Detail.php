@@ -9,14 +9,14 @@ class Detail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'no_trx',
-        'id_barang',
-        'qty',
+        'no_simpan',
+        'id_buku',
+        'stok',
         'sub_total',
     ];
 
-    public function getBarang()
+    public function getBuku()
     {
-        return $this->belongsTo(Barang::class, 'id_barang', 'id');
+        return $this->belongsTo(Buku::class, 'id_buku', 'id');
     }
 }

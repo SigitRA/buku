@@ -1,32 +1,32 @@
 @extends('tmp')
 @section('content')
-<form action="{{ route('barangs.update',$barang->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('bukus.update',$buku->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama Barang:</strong>
-                <input type="text" name="nama_barang" class="form-control" value="{{ $barang->nama_barang }}" placeholder="nama_barang">
-                @error('nama_barang')
+                <strong>Nama buku:</strong>
+                <input type="text" name="nama_buku" class="form-control" value="{{ $buku->nama_buku }}" placeholder="nama_buku">
+                @error('nama_buku')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Harga</strong>
-                <input type="text" name="harga" class="form-control" value="{{ $barang->harga }}" placeholder="harga">
-                @error('harga')
+                <strong>Penerbit</strong>
+                <input type="text" name="penerbit" class="form-control" value="{{ $buku->penerbit }}" placeholder="penerbit">
+                @error('penerbit')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Kondisi Barang:</strong>
-                <input type="text" name="kondisi_barang" class="form-control" value="{{ $barang->kondisi_barang }}" placeholder="kondisi_barang">
-                @error('kondisi_barang')
+                <strong>Kondisi buku:</strong>
+                <input type="text" name="tahun_terbit" class="form-control" value="{{ $buku->tahun_terbit }}" placeholder="tahun_terbit">
+                @error('tahun_terbit')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>

@@ -1,47 +1,40 @@
 @extends('tmp')
 @section('content')
-<form action="{{ route('pembelis.store') }}" method="POST" enctype="multipart/form-data">
+
+<form action="{{ route('penyimpanans.update', $penyimpanan->no_simpan) }}" method="POST" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>No Trx</strong>
-                <input type="text" name="no_trx" class="form-control" placeholder="No trx">
-                @error('name')
+                <strong>No Simpan</strong>
+                <input type="text" name="no_simpan" class="form-control" placeholder="No Inventaris" value="{{ $penyimpanan->no_simpan }}">
+                @error('no_simpan')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama pembeli :</strong>
-                <input type="text" name="nama_pembeli" class="form-control" placeholder="Nama Beli">
-                @error('location')
+                <strong>Lorong:</strong>
+                <input type="text" name="lorong" class="form-control" placeholder="Nama penyimpanan" value="{{ $penyimpanan->lorong }}">
+                @error('lorong')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Tanggal Beli:</strong>
-                <input type="date" name="tanggal" class="form-control" placeholder="Tanggal Beli">
-                @error('location')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>jenis_kelamin :</strong>
-                <input type="text" name="jenis_kelamin" class="form-control" placeholder="jenis kelamin">
-                @error('location')
+                <strong>Genre:</strong>
+                <input type="text" name="genre" class="form-control" placeholder="Kg" value="{{ $penyimpanan->genre }}">
+                @error('genre')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
         <div class="row col-xs-12 col-sm-12 col-md-12 mt-3">
             <div class="col-md-10 form-group">
-                <input type="text" name="search" id="search" class="form-control" placeholder="Masukan Nama Barang">
+                <input type="text" name="search" id="search" class="form-control" placeholder="Masukkan Nama Barang">
                 @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -54,24 +47,44 @@
             <table id="example" class="table table-striped table-success" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nama Barang</th>
-                        <th scope="col">Harga Barang</th>
-                        <th scope="col">Qty</th>
+                        <th scope="col">NO</th>
+                        <th scope="col">Nama Buku</th>
+                        <th scope="col">stok</th>
                         <th scope="col">Sub Total</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody id="detail">
-
+                    <?php $no = 0; ?>
+                    @foreach($detail as $item)
+                    <?php $no++ ?>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="productId{{$no}}" class="form-control" value="{{$item->id_buku}}">
+                            <span>{{$no}}</span>
+                        </td>
+                        <td>
+                            <input type="text" name="namaBuku{{$no}}" class="form-control" value="{{$item->getBuku->nama_buku}}">
+                        </td>
+                        <td>
+                            <input type="number" name="stok{{$no}}" class="form-control" oninput="sumstok('{{$no}}',this.value)" value="{{$item->stok}}">
+                        </td>
+                        <td>
+                            <input type="number" name="sub_total{{$no}}" class="form-control" value="{{$item->sub_total}}">
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-danger">X</a>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <input type="text" name="jml" class="form-control">
+                <input type="hidden" name="jml" class="form-control" value="{{count($detail)}}">
                 <div class="form-group">
                     <strong>Grand Total:</strong>
-                    <input type="text" name="total" class="form-control" placeholder="0">
-                    @error('jenis_kelamin')
+                    <input type="text" name="total" class="form-control" value="{{$penyimpanan->total}}">
+                    @error('tanggal')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
                 </div>
@@ -83,7 +96,7 @@
 @endsection
 @section('js')
 <script type="text/javascript">
-    var path = "{{ route('search.barang') }}";
+    var path = "{{ route('search.buku') }}";
 
     $("#search").autocomplete({
         source: function(request, response) {
@@ -104,7 +117,7 @@
             console.log($("input[name=jml]").val());
             if ($("input[name=jml]").val() > 0) {
                 for (let i = 1; i <= $("input[name=jml]").val(); i++) {
-                    id = $("input[name=id_product" + i + "]").val();
+                    id = $("input[name=id_buku" + i + "]").val();
                     if (id == ui.item.id) {
                         alert(ui.item.value + ' sudah ada!');
                         break;
@@ -119,9 +132,8 @@
         }
     });
 
-
     function add(id) {
-        const path = "{{ route('barangs.index') }}/" + id;
+        const path = "{{ route('bukus.index') }}/" + id;
         var html = "";
         var no = 0;
         if ($('#detail tr').length > no) {
@@ -136,28 +148,26 @@
                 console.log(data);
                 no++;
                 html += '<tr>' +
-                    '<td>' + no + '<input type="hidden" name="id_barang' + no + '" class="form-control" value="' + data.id + '"></td>' +
-                    '<td><input type="text" name="nama_barang' + no + '" class="form-control" value="' + data.nama_barang + '"></td>' +
-                    '<td><input type="text" name="harga' + no + '" class="form-control" value="' + data.harga + '"></td>' +
-                    '<td><input type="text" name="qty' + no + '" class="form-control" oninput="sumqty(' + no + ', this.value)" value="1"></td>' +
+                    '<td>' + no + '<input type="hidden" name="id_buku' + no + '" class="form-control" value="' + data.id + '"></td>' +
+                    '<td><input type="text" name="nama_buku' + no + '" class="form-control" value="' + data.nama_buku + '"></td>' +
+                    '<td><input type="text" name="stok' + no + '" class="form-control" oninput="sumstok(' + no + ', this.value)" value="1"></td>' +
                     '<td><input type="text" name="sub_total' + no + '" class="form-control"></td>' +
                     '<td><a href="#" class="btn btn-sm btn-danger">X</a></td>' +
                     '</tr>';
                 $('#detail').html(html);
                 $("input[name=jml]").val(no);
-                sumqty(no, 1);
+                sumstok(no, 1);
             }
         });
     }
 
-    function sumqty(no, q) {
-    var qty = $("input[name=qty" + no + "]").val();
-    var harga = $("input[name=harga" + no + "]").val();
+    function sumstok(no, q) {
+    var stok = $("input[name=stok" + no + "]").val();
     
-    var subtotal = parseInt(qty) * parseInt(harga); // Calculate subtotal
+    var subtotal = parseInt(stok); // Calculate subtotal based on stok
     
     $("input[name=sub_total" + no + "]").val(subtotal);
-    console.log(qty + " * " + harga + " = " + subtotal);
+    console.log("Stok " + stok + " = Subtotal " + subtotal);
     sumTotal();
 }
 

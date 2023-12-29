@@ -15,7 +15,7 @@
     <tbody class="table-succes ">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nama Barang</th>
+            <th scope="col">Nama Barany</th>
             <th scope="col">Harga Barang</th>
             <th scope="col">Kondisi Barang</th>
             <th scope="col">Actions</th>
